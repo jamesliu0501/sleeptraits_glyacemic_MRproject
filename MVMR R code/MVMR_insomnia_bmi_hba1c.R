@@ -26,12 +26,12 @@ rc_numeric<-cbind(data$age_recruitment,
 
 # 1st stage to predict insomnia 
 # (linear regression: adjusted for sex, age, assessment centre, chip, 40 genetic principal components)
-data$preinsomnia <- predict(glm(insomnia_binary ~ insomnia_unweighted2 + sex + as.factor(assessment_centre) + as.factor(chip) + rc_numeric,
+data$preinsomnia <- predict(glm(insomnia_binary ~ insomnia_unweighted2 + bmi_unweighted + sex + as.factor(assessment_centre) + as.factor(chip) + rc_numeric,
                                 na.action = na.exclude, data=data))
 
 # 1st stage to predict bmi 
 # (linear regression: adjusted for sex, age, assessment centre, chip, 40 genetic principal components)
-data$prebmi <- predict(glm(bmi ~ bmi_unweighted + sex + as.factor(assessment_centre) + as.factor(chip) + rc_numeric,
+data$prebmi <- predict(glm(bmi ~ insomnia_unweighted2 + bmi_unweighted + sex + as.factor(assessment_centre) + as.factor(chip) + rc_numeric,
                            na.action = na.exclude, data=data))
 
 # 2nd stage
